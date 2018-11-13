@@ -1,23 +1,23 @@
-##Some Key Terms and Concepts:
+## Some Key Terms and Concepts:
 
-####SPAs (Single Page Applications)
+#### SPAs (Single Page Applications)
 When we talk about Javascript "apps" we're usually talking about SPAs. The acronym refers to websites that handle navigation in-page, without loading new pages via HTTP. An SPA website usually loads once, and after that manages all links and form submissions with Javascript through AJAX requests in the background. Changes to the page, and even URL address updates, are handled by Javascript as well.
 
-####The Virtual DOM
+#### The Virtual DOM
 
 The virtual DOM is a Javascript object that describes the current state of your application's web page in the simplest way possible. There is, of course, another Javascript object that already describes the state of the web page: the Document Object Model, or DOM.
 
-#####Why have two DOMs?
+##### Why have two DOMs?
 
 The actual DOM is the browser's representation of the web page, and serves many uses. It is also a very large object and fairly costly to interact with. The Virtual DOM, on the other hand, is your application's representation of the web page, and is much smaller and less costly to update.
 
 The virtual DOM allows the framework to keep track of its own idea of what the page should look like, and to compare that with the previous state of the application, without incurring all the overhead of constantly modifying and reading the browser's actual DOM object. This turned out to be great for performance, and some version of this approach has been adopted by many other JavaScript frameworks.
 
-####Components
+#### Components
 
 In React and most other Javascript frameworks today, instead of writing a web page as one long page of nested HTML elements, we define components that encapsulate blocks of functionality and design. They can be as small or as large as you like, but, as with functions in Javascript, well-organized code produces components that are relatively easy to read and understand. 😎
 
-####Web Components
+#### Web Components
 
 Browsers are moving toward adopting a different but related concept called Web Components. These are reusable page elements that encapsulate pieces of functionality, such as a search input that offers live previews of search results, or a button that shows a tooltip on hover.
 
@@ -25,7 +25,7 @@ Web Components allow you to build complex functionality into a custom HTML eleme
 
 Know that Web Components are a native web technology, and are distinct from React components. [They complement React components and are interoperable with them](https://reactjs.org/docs/web-components.html).
 
-####Modularity
+#### Modularity
 
 React is not a full-featured JavaScript framework. Its job is to manage elements on the web page, and make sure that they reflect your data correctly. It leaves it up to the programmer to decide how to handle communication with the server. 💻🔄🖥
 
@@ -35,7 +35,7 @@ This modularity also means that developers have many other choices to make aroun
 
 As a result, in our course we'll be focusing on React as a standalone UI library, and we'll use a build tool, create-react-app, that abstracts away most of the toolchain choices for you. Just be aware that React is often paired with a library like Flux or Redux in practice,  and either or both of those libraries would make an excellent next step in learning about the React ecosystem when you are done with this course.
 
-####HTML in Javascript, and JSX
+#### HTML in Javascript, and JSX
 
 HTML was originally designed as a tool for creating mostly static documents that users could browse on the world wide web. In the early days, Javascript was useful for enhancing these pages with simple interactive elements like drop-down menus. Javascript was about manipulating a document whose main definition was in HTML.
 
@@ -47,7 +47,7 @@ Frontend frameworks solve this problem by turning the relationship around, and d
 
 Each framework has a slightly different way of handling HTML in Javascript. These approaches are called templating languages. Most frameworks separate Javascript from HTML-defining templates in separate files, but React uses a template language called [JSX](https://reactjs.org/docs/introducing-jsx.html), which literally combines HTML and Javascript into a single file. This means that often, in React, you'll be writing code in JSX, rather than strict Javascript. Don't worry though, it is really just an augmented form of Javascript, and everything you have learned about Javascript will still apply here. 👌
 
-####Javascript Frameworks and Delayed Rendering
+#### Javascript Frameworks and Delayed Rendering
 
 The client-side rendering that single page applications do means delayed rendering and delivering more JavaScript to the client. This is a limitation that all JavaScript frameworks have, although it is ideally mitigated by faster interaction after the page has loaded.
 
@@ -58,7 +58,7 @@ Frameworks are increasingly working around this problem by creating server-side 
 Now that you have some background on key React concepts, let's take a look at how to build your first app!  
 
 
-##Installation Process:
+## Installation Process:
 We need node.js and npm modules for this. Node.js is a Javascript run-time environment that allow us to execute Javascript code like if we were working on a server. Remember that every web application is meant to be executed in a server (or a local server, if we’re running it in our computers). In the other hand NPM is a package manager for Javascript, that is, NPM allows us to install Javascript libraries to make our experience even more richer by expanding the basic functionalities. 
 1. we need a tool called curl, if you don’t have it, you can install it typing the following command in a terminal:    sudo apt-get install curl
 2. curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
@@ -86,11 +86,11 @@ yarn.lock
 
 Most of what we'll be concerned with in this course is inside the  src/  directory, but let's take a moment to review the rest of the root directory's contents.
 
-#####node_modules/ and package.json
+##### node_modules/ and package.json
 
 These should be familiar to you if you've had any experience working on a node.js project in the past. In brief,  node_modules/  contains all the libraries and external code that your package manager loads based on the dependencies list you define in  package.json .
 
-#####yarn.lock
+##### yarn.lock
 
 Similarly, `yarn.lock` relates to package management. If  package.json  describes your app's dependency requirements,  yarn.lock  describes exactly what it must install to meet those requirements, down to the exact version of each dependency.
 
@@ -98,17 +98,17 @@ This file is useful for keeping track of the exact version of dependencies that 
 
 Don't change anything in  yarn.lock  !
 
-#####README.md
+##### README.md
 
 This generated file contains extensive documentation on the use ofcreate-react-app . 📝  There is a lot of useful information here about developing and maintaining your  create-react-app application. Note that it generally references the npm package manager, and since we're using yarn, you'll need to modify the npm commands appropriately. 
 
 You can find lots of [help](https://shift.infinite.red/npm-vs-yarn-cheat-sheet-8755b092e5cc) on the web translating commands from npm to yarn, if you need it.
 
-#####.gitignore
+##### .gitignore
 
 create-react-app generates a . gitignore for you that you should feel free to replace or expand as you see fit.
 
-#####public/
+##### public/
 
  Public/  is the public root of your site. Files in here are accessible to anyone on the web. It's a good place to keep static files and assets that aren't being managed in the  src/  directory of your React app.
 src/
@@ -128,14 +128,14 @@ You can see that there's some CSS and SVG in here in addition to JavaScript. Tha
 
 We'll take a look at the JavaScript files here, and how it all ties together, in the next section.
 
-#####Handling non-javascript assets in React
+##### Handling non-javascript assets in React
 
 When we look in thesrc  directory in the next chapter, you may notice that JavaScriptimport  statements are being used to load non-JavaScript assets like CSS, images, and web fonts.
 A traditional website loads assets like these from remote files based on urls in  src  attributes in HTML tags or stylesheet rules, but Webpack loaders (which create-react-app is using behind the scenes to build your app) let you load them directly in Javascript from files in the 'src' directory.
 Webpack enables this by parsing the contents of the CSS, image, and font files you want to import and making those contents available as values stored in a JavaScript module.
 This makes it simple to integrate these assets into your app build and handle all your frontend dependencies with one tool.
 
-##Mounting the different files
+## Mounting the different files
 Before we get into JavaScript code, let's have a look at where the browser starts with your web page!
 This is the static HTML file that is served from  ./public/index.html . Looking at this file tells you that it truly is a shell of a web page. There's basically nothing in here of interest to an end user. Mainly, there's a link to a favicon, and an empty div in the body with an id of root.
 
@@ -163,7 +163,7 @@ The naming of this file suggests its relationship to  ./public/index.html . Just
 
 Since this is also the first Javascript file we've looked at, let's take a minute to understand what's going on here. 🔎
 
-#####ES6 modules
+##### ES6 modules
 
 If you haven't worked with JavaScript that's compiled on the server side, the  import  statements at the top of the file may look strange.  import  is an expression of the module pattern in JavaScript. It allows us to import units of JavaScript functionality from other JavaScript files.
 
@@ -173,7 +173,7 @@ import App from './App';
 import './index.css';
  
 
-#####Path vs. Named-module imports
+##### Path vs. Named-module imports
 
 The first two lines import core functionality of the React library itself. The third and fourth lines import modules from inside our own app.
 
@@ -185,7 +185,7 @@ We'll take a look at those files in a minute, but first let's look at how the ap
 
 The  import  statements at the top of the file each have two user-defined elements: the name or path of the module to import, and the variable name that the loaded module will be assigned to. You can use whatever variable names you want here, but when loading named modules it's a good idea to use a variable name that matches the variable name of the module in the file where it's defined.
 
-#####Rendering React into the web page
+##### Rendering React into the web page
 
 Next, we have the code that invokes some of the imported modules to tell React to render the UI inside theroot  element in the web page:
 
@@ -203,7 +203,7 @@ Next, we have the code that invokes some of the imported modules to tell React t
 We've already been over how the  root  element was defined in./public/index.html , so the second argument is provided here via querying the DOM.
 The first argument is where our app starts to take shape. This is a reference to the 'App' component, which we can find defined in ./src/app.js .
 
-#####JSX
+##### JSX
 
 src/index.js  has a  .js  file extension, but actually isn't valid JavaScript, as you can see from this line:
 
